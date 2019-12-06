@@ -11,4 +11,5 @@ public interface ICancionService {
     ArrayList<ListaReproduccion> getAll();
     Optional<String> getDescription(String listName);
     Optional<ListaReproduccion> updateDescription(String listName,ListaReproduccion lista);
+    boolean delete(String name);
 }

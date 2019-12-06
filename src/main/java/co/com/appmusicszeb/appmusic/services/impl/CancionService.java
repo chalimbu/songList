@@ -48,6 +48,14 @@ public class CancionService implements ICancionService {
         miLista.map(name->{name.setDescription(lista.getDescription());
         return name;});
         return miLista;
+
+    }
+
+    @Override
+    public boolean delete(String name) {
+        boolean listExist=cancionDao.existsById(name);
+        cancionDao.deleteById(name);
+        return listExist;
     }
 
 

@@ -39,6 +39,12 @@ public class MusicController {
         return cancionService.updateDescription(nombre,update);
     }
 
+    @DeleteMapping(value="/lists/{name}")
+    public boolean deleteList(@PathVariable(value="name") String nombre){
+
+        return cancionService.delete(nombre);
+    }
+
 }
 
 
