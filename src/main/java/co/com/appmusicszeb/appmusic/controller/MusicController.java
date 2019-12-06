@@ -33,6 +33,12 @@ public class MusicController {
         return cancionService.getDescription(nombre);
     }
 
+    @PutMapping(value="/lists/{name}")
+    public ListaReproduccion modifiedList(@PathVariable(value="name") String nombre,@RequestBody ListaReproduccion update){
+        //TODO validacion pedida
+        return cancionService.save(update);
+    }
+
 }
 
 
