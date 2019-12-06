@@ -18,8 +18,13 @@ public class MusicController {
     ICancionService cancionService;
 
     @PostMapping(value = "/lists")
-    public ListaReproduccion sendViaResponseEntity(@RequestBody ListaReproduccion nuevaLista) {
+    public ListaReproduccion saveSong(@RequestBody ListaReproduccion nuevaLista) {
         return cancionService.save(nuevaLista);
+    }
+
+    @GetMapping(value="/lists")
+    public ArrayList<ListaReproduccion> getList(){
+        return cancionService.getAll();
     }
 
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 
 @Service
 public class CancionService implements ICancionService {
@@ -19,5 +20,15 @@ public class CancionService implements ICancionService {
     @Transactional
     public ListaReproduccion save(ListaReproduccion guardar) {
         return cancionDao.save(guardar);
+    }
+
+    @Override
+    @Transactional
+    public ArrayList<ListaReproduccion> getAll() {
+        ArrayList<ListaReproduccion> todas=new ArrayList<>();
+        for(ListaReproduccion lista: cancionDao.findAll()){
+            todas.add(lista);
+        }
+        return todas;
     }
 }
