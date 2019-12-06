@@ -1,11 +1,12 @@
 package co.com.appmusicszeb.appmusic.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
 @Table(name= "cancion")
-public class ListaReproduccion {
+public class ListaReproduccion implements Serializable {
 
     @Id
     private String name;

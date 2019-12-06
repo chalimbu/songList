@@ -1,6 +1,8 @@
 package co.com.appmusicszeb.appmusic.model;
 
-public class Cancion {
+import java.io.Serializable;
+
+public class Cancion implements Serializable {
    private String title;
    private String artist;
    private String album;
