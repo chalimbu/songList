@@ -7,9 +7,9 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     platform: postgres
-    url: jdbc:postgresql://ec2-54-221-214-183.compute-1.amazonaws.com:5432/d7glt69cs56tn9
-    username: tkrzdgajxpxhxf
-    password: 3ab25dbdef13a5dd81e402bd568efaa1cb2d4c4af30821e6df17bf7743d82a3d
+    url: jdbc:postgresql://ec2-174-129-255-37.compute-1.amazonaws.com:5432/db2bvrqufvjn2q
+    username: rjoxbyfkuejqxw
+    password: 55d24463950c7d686c65af88c155d87a54770152dafe7ef8738e80319211141b
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
