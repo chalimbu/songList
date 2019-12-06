@@ -1,8 +1,13 @@
 package co.com.appmusicszeb.appmusic.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table(name= "cancion")
 public class ListaReproduccion {
+
+    @Id
     private String name;
     private String description;
     private ArrayList<Cancion> songs;

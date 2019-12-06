@@ -19,17 +19,11 @@ public class MusicController {
 
     @PostMapping(value = "/lists")
     public ListaReproduccion sendViaResponseEntity(@RequestBody ListaReproduccion nuevaLista) {
-        Response res=cancionService.save(nuevaLista);
-        if(res.getState()){
-            throw new BadRequest();
-        }else{
-            return (ListaReproduccion)res.getMessageBody();
-        }
+        return cancionService.save(nuevaLista);
     }
 
 
 }
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    class BadRequest extends RuntimeException{ }
+
 

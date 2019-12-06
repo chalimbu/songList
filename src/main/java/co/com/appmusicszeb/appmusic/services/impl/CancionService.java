@@ -17,16 +17,7 @@ public class CancionService implements ICancionService {
 
     @Override
     @Transactional
-    public Response save(ListaReproduccion guardar) {
-        Response mi=new Response();
-        if(guardar.getName().isEmpty() || guardar.getName()==null){
-            mi.setState(false);
-            mi.setCodeMessage(400);
-        }else{
-            mi.setState(true);
-            mi.setCodeMessage(201);
-            mi.setMessageBody(cancionDao.save(guardar));
-        }
-        return mi;
+    public ListaReproduccion save(ListaReproduccion guardar) {
+        return cancionDao.save(guardar);
     }
 }
