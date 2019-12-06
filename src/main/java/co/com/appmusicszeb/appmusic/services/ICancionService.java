@@ -10,4 +10,5 @@ public interface ICancionService {
     ListaReproduccion save(ListaReproduccion guardar);
     ArrayList<ListaReproduccion> getAll();
     Optional<String> getDescription(String listName);
+    Optional<ListaReproduccion> updateDescription(String listName,ListaReproduccion lista);
 }

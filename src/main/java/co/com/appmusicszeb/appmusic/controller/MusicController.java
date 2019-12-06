@@ -34,9 +34,9 @@ public class MusicController {
     }
 
     @PutMapping(value="/lists/{name}")
-    public ListaReproduccion modifiedList(@PathVariable(value="name") String nombre,@RequestBody ListaReproduccion update){
+    public Optional<ListaReproduccion> modifiedList(@PathVariable(value="name") String nombre,@RequestBody ListaReproduccion update){
         //TODO validacion pedida
-        return cancionService.save(update);
+        return cancionService.updateDescription(nombre,update);
     }
 
 }

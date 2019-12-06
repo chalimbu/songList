@@ -40,4 +40,15 @@ public class CancionService implements ICancionService {
         return miLista.map(x->x.getDescription());
 
     }
+
+    @Override
+    public Optional<ListaReproduccion> updateDescription(String listName, ListaReproduccion lista) {
+        //TODO mis asked validation
+        Optional<ListaReproduccion> miLista =cancionDao.findById(listName);
+        miLista.map(name->{name.setDescription(lista.getDescription());
+        return name;});
+        return miLista;
+    }
+
+
 }
