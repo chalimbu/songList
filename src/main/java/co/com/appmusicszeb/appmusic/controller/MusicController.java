@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 public class MusicController {
@@ -23,10 +24,14 @@ public class MusicController {
     }
 
     @GetMapping(value="/lists")
-    public ArrayList<ListaReproduccion> getList(){
+    public ArrayList<ListaReproduccion> getLists(){
         return cancionService.getAll();
     }
 
+    @GetMapping(value="/lists/{name}")
+    public Optional<String> getListDescription(@PathVariable(value="name") String nombre){
+        return cancionService.getDescription(nombre);
+    }
 
 }
 
