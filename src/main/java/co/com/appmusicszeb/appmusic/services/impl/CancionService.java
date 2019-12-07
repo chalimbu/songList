@@ -6,6 +6,7 @@ import co.com.appmusicszeb.appmusic.services.ICancionService;
 import co.com.appmusicszeb.appmusic.util.Response;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,8 +21,19 @@ public class CancionService implements ICancionService {
 
     @Override
     @Transactional
-    public ListaReproduccion save(ListaReproduccion guardar) {
-        return cancionDao.save(guardar);
+    public Response<ListaReproduccion> save(ListaReproduccion guardar) {
+        Response res= new Response<ListaReproduccion>();
+        if(guardar.getName()==null || guardar.getName().isEmpty()){
+            res.setState(false);
+            res.setCodeMessage(400);
+            res.setMessage("Bad request");
+        }else{
+            res.setState(true);
+            res.setCodeMessage(201);
+            res.setMessage("Created");
+            res.setMessageBody(cancionDao.save(guardar));
+        }
+        return res;
     }
 
     @Override

@@ -1,20 +1,19 @@
 package co.com.appmusicszeb.appmusic.util;
 
-public class Response {
-    private Object messageBody;
+public class Response<A> {
+    private A messageBody;
     private int codeMessage;
     private String message;
     private Boolean state;
 
     public Response() {
-        this.codeMessage = 200;
     }
 
-    public Object getMessageBody() {
+    public A getMessageBody() {
         return messageBody;
     }
 
-    public void setMessageBody(Object messageBody) {
+    public void setMessageBody(A messageBody) {
         this.messageBody = messageBody;
     }
 

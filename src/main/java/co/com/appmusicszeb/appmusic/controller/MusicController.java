@@ -3,6 +3,7 @@ package co.com.appmusicszeb.appmusic.controller;
 import co.com.appmusicszeb.appmusic.model.Cancion;
 import co.com.appmusicszeb.appmusic.model.ListaReproduccion;
 import co.com.appmusicszeb.appmusic.services.ICancionService;
+import co.com.appmusicszeb.appmusic.services.application.trasformers.ResponseTransformer;
 import co.com.appmusicszeb.appmusic.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ public class MusicController {
     ICancionService cancionService;
 
     @PostMapping(value = "/lists")
-    public ListaReproduccion saveSong(@RequestBody ListaReproduccion nuevaLista) {
-        return cancionService.save(nuevaLista);
+    public ResponseEntity saveSong(@RequestBody ListaReproduccion nuevaLista) {
+        return ResponseTransformer.transformFromResponse(cancionService.save(nuevaLista));
     }
 
     @GetMapping(value="/lists")
