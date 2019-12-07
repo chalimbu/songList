@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface ICancionService {
     Response<ListaReproduccion> save(ListaReproduccion guardar);
-    ArrayList<ListaReproduccion> getAll();
-    Optional<String> getDescription(String listName);
-    Optional<ListaReproduccion> updateDescription(String listName,ListaReproduccion lista);
-    boolean delete(String name);
+    Response<ArrayList<ListaReproduccion>> getAll();
+    Response<String> getDescription(String listName);
+    Response<ListaReproduccion> updateDescription(String listName,ListaReproduccion lista);
+    Response<Boolean>  delete(String name);
 }

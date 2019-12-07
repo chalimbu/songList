@@ -9,6 +9,12 @@ public class Response<A> {
     public Response() {
     }
 
+    public Response(A messageBody, int codeMessage, Boolean state) {
+        this.messageBody = messageBody;
+        this.codeMessage = codeMessage;
+        this.state = state;
+    }
+
     public A getMessageBody() {
         return messageBody;
     }

@@ -25,25 +25,23 @@ public class MusicController {
     }
 
     @GetMapping(value="/lists")
-    public ArrayList<ListaReproduccion> getLists(){
-        return cancionService.getAll();
+    public ResponseEntity getLists(){
+        return ResponseTransformer.transformFromResponse(cancionService.getAll());
     }
 
     @GetMapping(value="/lists/{name}")
-    public Optional<String> getListDescription(@PathVariable(value="name") String nombre){
-        return cancionService.getDescription(nombre);
+    public ResponseEntity getListDescription(@PathVariable(value="name") String nombre){
+        return ResponseTransformer.transformFromResponse(cancionService.getDescription(nombre));
     }
 
     @PutMapping(value="/lists/{name}")
-    public Optional<ListaReproduccion> modifiedList(@PathVariable(value="name") String nombre,@RequestBody ListaReproduccion update){
-        //TODO validacion pedida
-        return cancionService.updateDescription(nombre,update);
+    public ResponseEntity modifiedList(@PathVariable(value="name") String nombre,@RequestBody ListaReproduccion update){
+        return ResponseTransformer.transformFromResponse(cancionService.updateDescription(nombre,update));
     }
 
     @DeleteMapping(value="/lists/{name}")
-    public boolean deleteList(@PathVariable(value="name") String nombre){
-
-        return cancionService.delete(nombre);
+    public ResponseEntity deleteList(@PathVariable(value="name") String nombre){
+        return ResponseTransformer.transformFromResponse(cancionService.delete(nombre));
     }
 
 }

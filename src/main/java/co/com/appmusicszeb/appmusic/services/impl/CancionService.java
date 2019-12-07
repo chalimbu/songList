@@ -38,36 +38,49 @@ public class CancionService implements ICancionService {
 
     @Override
     @Transactional
-    public ArrayList<ListaReproduccion> getAll() {
+    public Response<ArrayList<ListaReproduccion>> getAll() {
         ArrayList<ListaReproduccion> todas=new ArrayList<>();
         for(ListaReproduccion lista: cancionDao.findAll()){
             todas.add(lista);
         }
-        return todas;
+        return new Response<>(todas,200,true);
     }
 
     @Override
-    public Optional<String> getDescription(String listName) {
+    public Response<String> getDescription(String listName) {
         Optional<ListaReproduccion> miLista=cancionDao.findById(listName);
-        return miLista.map(x->x.getDescription());
-
+        if(miLista.isPresent()){
+            return new Response(miLista.orElse(new ListaReproduccion()),200,true);
+        }else{
+            return new Response(null,404,false);
+        }
     }
 
     @Override
-    public Optional<ListaReproduccion> updateDescription(String listName, ListaReproduccion lista) {
-        //TODO mis asked validation
-        Optional<ListaReproduccion> miLista =cancionDao.findById(listName);
-        miLista.map(name->{name.setDescription(lista.getDescription());
-        return name;});
-        return miLista;
-
+    public Response<ListaReproduccion> updateDescription(String listName, ListaReproduccion lista) {
+        if(listName.equals(lista.getName())){
+            Optional<ListaReproduccion> miLista=cancionDao.findById(listName);
+            if(miLista.isPresent()){
+                miLista.map(x->{x.setDescription(lista.getDescription());return x;});
+                return new Response<>(cancionDao.save(miLista.get()),204,false);
+            }else{
+                return new Response<>(null,404,false);
+            }
+        }else {
+            return new Response(null,409,false);
+        }
     }
 
     @Override
-    public boolean delete(String name) {
+    public Response<Boolean> delete(String name) {
         boolean listExist=cancionDao.existsById(name);
-        cancionDao.deleteById(name);
-        return listExist;
+        if(listExist){
+            cancionDao.deleteById(name);
+            return new Response(listExist,204,false);
+        }else{
+            return  new Response(null,404,false);
+        }
+
     }
 
 
